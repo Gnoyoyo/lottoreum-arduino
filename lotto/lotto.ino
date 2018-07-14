@@ -34,6 +34,14 @@ void setup() {
 
   Serial.begin(9600); // the bigger number the better
 
+  sensors.begin();
+
+  sensors.setResolution(tempHand1, 12);
+  sensors.setResolution(tempHand2, 12);
+  sensors.setResolution(tempHand3, 12);
+  sensors.setResolution(tempHand4, 12);
+
+
 
   Serial.println("Device Finish Setup"); //clears up any data left from previous projects
 
@@ -43,4 +51,18 @@ void setup() {
 void loop() {
   // put your main code here, to run repeatedly:
 
+  //Read Sensor
+  sensors.requestTemperatures();
+  delay(1000);
+
+
+
+}
+
+float getTemperature(DeviceAddress deviceAddress)
+{
+  float tempC;
+  //sensors.requestTemperatures();
+  tempC = sensors.getTempC(deviceAddress);
+  return (tempC);
 }
