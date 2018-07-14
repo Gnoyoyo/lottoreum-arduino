@@ -7,9 +7,9 @@
 #define Button 12
 #define Light 6
 #define LightSource 5
+#define RedLight 10
+#define GreenLight 9
 
-// The amount of time (in milliseconds) between tests
-#define TEST_DELAY   2000
 
 TM1637Display display(CLK, DIO);
 
@@ -20,16 +20,22 @@ void setup()
   pinMode(Button, INPUT);
   pinMode(Light, OUTPUT);
   pinMode(LightSource, OUTPUT);
+  pinMode(GreenLight, OUTPUT);
+  pinMode(RedLight, OUTPUT);
   digitalWrite(Light, LOW);
   digitalWrite(LightSource, HIGH);
+  digitalWrite(GreenLight, LOW);
+  digitalWrite(RedLight, HIGH);
 
-  Serial.begin(9600); // the bigger number the better
+  Serial.begin(9600); // Serial Bud rate
 
 }
 
 void loop()
 {
   digitalWrite(Light, LOW);
+  digitalWrite(RedLight, HIGH);
+  digitalWrite(GreenLight, LOW);
   int k;
   int x;
   uint8_t data[] = { 0xff, 0xff, 0xff, 0xff };
@@ -42,6 +48,8 @@ void loop()
 
   if (buttonState == 1) {
 
+    digitalWrite(RedLight, LOW);
+    digitalWrite(GreenLight, HIGH);
     digitalWrite(Light, HIGH);
 
 
@@ -54,7 +62,4 @@ void loop()
   } else {
     digitalWrite(Light, LOW);
   }
-
-  digitalWrite(Light, LOW);
-
 }
