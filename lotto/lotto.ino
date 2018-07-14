@@ -42,6 +42,9 @@ void setup() {
   sensors.setResolution(sensorHand4, 12);
 
 
+  delay(2000);
+
+
 
   Serial.println("Device Finish Setup"); //clears up any data left from previous projects
 
