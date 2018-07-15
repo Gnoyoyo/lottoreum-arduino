@@ -75,7 +75,7 @@ void loop()
 
   buttonState = digitalRead(Button);
 
-  Serial.println(buttonState);
+  //Serial.println(buttonState);
 
   if (buttonState == 1) {
 
@@ -84,14 +84,15 @@ void loop()
     digitalWrite(Light, HIGH);
 
 
-    for (x = 20; x >= 15 ; x--) {
+    for (x = 20; x >= 16 ; x--) {
       display.showNumberDec(x, true);
       delay(1000);
     }
 
+    display.showNumberDec(15, true);
     readPower();
 
-    for (x = 15; x >= 0 ; x--) {
+    for (x = 14; x >= 0 ; x--) {
       display.showNumberDec(x, true);
       delay(1000);
     }
@@ -112,7 +113,7 @@ float getTemperature(DeviceAddress deviceAddress)
 void readPower()
 {
   sensors.requestTemperatures();
-  delay(1000);
+  //delay(400);
 
   Serial.print(getTemperature(sensorHand1));
   Serial.print(";");
@@ -125,7 +126,7 @@ void readPower()
   Serial.print(dht1.readTemperature());
   Serial.print(";");
   Serial.print(dht1.readHumidity());
-  Serial.print("/n");
+  Serial.print("\n");
 }
 
 
